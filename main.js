@@ -15,7 +15,7 @@ var input_data = () => {
                 document.getElementById("name").value = "";
                 return;
         }
-    else if(year == null || /[^0-9]/.test(year)){
+    else if(year == null || /[^0-9]/.test(year) || (year.length < 4)||(year.length > 4)){
                 alert("Enter correct Year");
                 document.getElementById("year").value = "";
                 return;
