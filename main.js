@@ -10,12 +10,16 @@ var input_data = () => {
         document.getElementById("rollno").value = "";
         return;
     }
+    else if(checkRoll(roll) == false){
+        alert("Roll Number already present");
+        return;
+    }
     else if(name == null || /[^a-zA-Z]/.test(name)){
                 alert("Enter correct Name");
                 document.getElementById("name").value = "";
                 return;
         }
-    else if(year == null || /[^0-9]/.test(year) || (year.length < 4)||(year.length > 4)){
+    else if(year == null || /[^0-9]/.test(year)|| (year.length < 4)||(year.length > 4)){
                 alert("Enter correct Year");
                 document.getElementById("year").value = "";
                 return;
@@ -38,6 +42,16 @@ var input_data = () => {
     document.getElementById("stream").value = "";
 }
 
+var checkRoll = function(roll){
+    const rows = document.getElementsByTagName('tr');
+    for (let i of rows) {
+        if (i.children[1].innerHTML == roll) {
+            return false;
+        }
+    }
+    return true;
+}
+
 var deleteRow =() => {
     let t=document.getElementById("tableid");
     let n=t.getElementsByClassName("check");
@@ -45,7 +59,7 @@ var deleteRow =() => {
         {
             if(n[i].checked)
             {
-                tableid.deleteRow(i);
+                t.deleteRow(i);
                 i--;
                 n.length--;
             }
